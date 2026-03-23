@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aptech Osogbo – Best IT Institute in Nigeria</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #F5A800;
+      --gold-dark: #D48F00;
+      --bg: #0e0e0e;
+      --surface: #1a1a1a;
+      --text: #ffffff;
+      --muted: #aaaaaa;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 70px;
+      background: var(--bg);
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-badge {
+      background: #cc2200;
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+
+    .logo-right {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-right .sub {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .logo-right .city {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 200;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ── NAV LINKS ── */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-links .has-arrow::after {
+      content: ' ▾';
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .btn-enroll {
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 26px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .btn-enroll:hover {
+      background: var(--gold-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 70px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px 120px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 40%, rgba(245,168,0,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 60% at 50% 80%, rgba(245,168,0,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      width: 100%;
+      animation: fadeUp 0.9s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(245,168,0,0.15);
+      border: 1px solid rgba(245,168,0,0.4);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 22px;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.9s 0.1s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(52px, 10vw, 112px);
+      line-height: 0.92;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: fadeUp 0.9s 0.2s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    .hero h1 .accent { color: var(--gold); }
+
+    .hero p {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 44px;
+      font-weight: 400;
+      animation: fadeUp 0.9s 0.3s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 18px 44px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      animation: fadeUp 0.9s 0.4s cubic-bezier(.22,1,.36,1) both;
+      box-shadow: 0 0 0 0 rgba(245,168,0,0);
+    }
+
+    .btn-cta:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(245,168,0,0.35);
+    }
+
+    .corner-decor {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+    .corner-decor.tl { top: 30px; left: 30px; }
+    .corner-decor.br { bottom: 30px; right: 30px; transform: rotate(180deg); }
+
+    /* ── CAREER PROGRAMMES SECTION ── */
+    .programmes {
+      padding: 80px 40px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .programmes-header {
+      margin-bottom: 40px;
+    }
+
+    .programmes-header h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 5vw, 56px);
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .programmes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .prog-card {
+      background: #111;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #222;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .prog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .prog-card-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+
+    .prog-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .prog-card:hover .prog-card-img img {
+      transform: scale(1.04);
+    }
+
+    /* Colour tint overlays matching the screenshot */
+    .prog-card-img .tint {
+      position: absolute;
+      inset: 0;
+      mix-blend-mode: multiply;
+      opacity: 0.55;
+    }
+    .prog-card:nth-child(1) .tint { background: #b03060; }
+    .prog-card:nth-child(2) .tint { background: #207060; }
+    .prog-card:nth-child(3) .tint { background: #106070; }
+
+    .prog-card-body {
+      padding: 22px 20px 24px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .prog-card-body h3 {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: clamp(14px, 1.4vw, 16px);
+      line-height: 1.4;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .prog-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #222;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── RESPONSIVE: PROGRAMMES ── */
+    @media (max-width: 860px) {
+      .programmes {
+        padding: 60px 24px 80px;
+      }
+      .programmes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .programmes {
+        padding: 48px 20px 60px;
+      }
+      .programmes-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .prog-card-img {
+        aspect-ratio: 16 / 9;
+      }
+    }
+
+    /* ── MOBILE DRAWER OVERLAY ── */
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 150;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .nav-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* ═══════════════════════════════
+       RESPONSIVE BREAKPOINTS
+    ═══════════════════════════════ */
+
+    /* ── Tablet: hide links, show hamburger ── */
+    @media (max-width: 900px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .btn-enroll.desktop-only {
+        display: none;
+      }
+
+      /* Slide-in drawer */
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(320px, 80vw);
+        background: #111;
+        border-left: 1px solid #2a2a2a;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 90px 32px 40px;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(.22,1,.36,1);
+        z-index: 180;
+        overflow-y: auto;
+      }
+
+      .nav-links.open {
+        transform: translateX(0);
+      }
+
+      .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid #222;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 18px 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .nav-links .has-arrow::after {
+        float: right;
+        margin-top: 2px;
+      }
+
+      /* Enroll button at bottom of drawer */
+      .nav-links .mobile-enroll {
+        display: block;
+        margin-top: 32px;
+        width: 100%;
+        text-align: center;
+        border: none;
+      }
+
+      .nav-links .mobile-enroll a {
+        display: block;
+        background: var(--gold);
+        color: #000;
+        font-weight: 700;
+        font-size: 15px;
+        padding: 16px;
+        border-radius: 50px;
+        text-decoration: none;
+      }
+    }
+
+    /* ── Small tablet / large phone ── */
+    @media (max-width: 680px) {
+      .hero {
+        padding: 60px 20px 80px;
+        min-height: calc(100vh - 70px);
+      }
+
+      .hero h1 {
+        font-size: clamp(44px, 13vw, 70px);
+        letter-spacing: -0.5px;
+        line-height: 0.95;
+      }
+
+      .badge {
+        font-size: 12px;
+        padding: 7px 18px;
+        margin-bottom: 22px;
+      }
+
+      .hero p {
+        font-size: 15px;
+        line-height: 1.65;
+        margin-bottom: 36px;
+      }
+
+      .btn-cta {
+        font-size: 15px;
+        padding: 16px 36px;
+      }
+
+      .corner-decor {
+        width: 120px;
+        height: 120px;
+      }
+      .corner-decor.tl { top: 16px; left: 16px; }
+      .corner-decor.br { bottom: 16px; right: 16px; }
+    }
+
+    /* ── Small phone ── */
+    @media (max-width: 400px) {
+      nav {
+        padding: 0 16px;
+      }
+
+      .logo-badge {
+        font-size: 18px;
+      }
+
+      .logo-right .sub {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .hero h1 {
+        font-size: clamp(38px, 14vw, 56px);
+      }
+
+      .btn-cta {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a class="logo" href="#">
+      <div class="logo-badge">Ap<span style="color:var(--gold)">tech</span></div>
+      <div class="logo-right">
+        <span class="sub">Computer Education</span>
+        <span class="city">Osogbo</span>
+      </div>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" class="has-arrow">Programs</a></li>
+      <li><a href="#">Short Courses</a></li>
+      <li><a href="#">Corporate</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Our Team</a></li>
+      <li><a href="#">Careers</a></li>
+      <!-- Enroll button visible only inside mobile drawer -->
+      <li class="mobile-enroll"><a href="#">Enroll Now</a></li>
+    </ul>
+
+    <!-- Desktop enroll button -->
+    <a href="#" class="btn-enroll desktop-only">Enroll Now</a>
+
+    <!-- Hamburger toggle -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <svg class="corner-decor tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="10" cy="10" r="4" fill="#F5A800"/>
+      <circle cx="40" cy="10" r="4" fill="#F5A800"/>
+      <circle cx="70" cy="10" r="4" fill="#F5A800"/>
+      <circle cx="10" cy="40" r="4" fill="#F5A800"/>
+      <circle cx="40" cy="40" r="4" fill="#F5A800"/>
+      <circle cx="10" cy="70" r="4" fill="#F5A800"/>
+    </svg>
+    <svg class="corner-decor br" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="10" cy="10" r="4" fill="#F5A800"/>
+      <circle cx="40" cy="10" r="4" fill="#F5A800"/>
+      <circle cx="70" cy="10" r="4" fill="#F5A800"/>
+      <circle cx="10" cy="40" r="4" fill="#F5A800"/>
+      <circle cx="40" cy="40" r="4" fill="#F5A800"/>
+      <circle cx="10" cy="70" r="4" fill="#F5A800"/>
+    </svg>
+
+    <div class="hero-content">
+      <div class="badge">✦ Best IT Institute in Nigeria</div>
+
+      <h1>
+        Where <span class="accent">Dreams</span><br>
+        Transform into<br>
+        Tech Realities
+      </h1>
+
+      <p>
+        Choose from a variety of learning formats,<br>
+        including in-person classes and online courses.
+      </p>
+
+      <a href="#" class="btn-cta">Get Free Consultation</a>
+    </div>
+  </section><img src="./images/aptech_picture.png" alt="Hero Images" width="65%" style="margin-top: 5%;margin-left: 17%;">
+  
+
+  <!-- CAREER PROGRAMMES -->
+  <section class="programmes">
+    <div class="programmes-header">
+      <h2>Career Programmes</h2>
+    </div>
+
+    <div class="programmes-grid">
+
+      <!-- Card 1 -->
+      <div class="prog-card">
+        <div class="prog-card-img">
+          <img
+            src="./images/image_1.jpg"
+            alt="Computer Professional working at desk"
+            loading="lazy"
+          />
+          <div class="tint"></div>
+        </div>
+        <div class="prog-card-body">
+          <h3>Aptech Certified Computer Professional (ACCP)</h3>
+          <div class="prog-icon">🔴</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="prog-card">
+        <div class="prog-card-img">
+          <img
+            src="./images/image_2.jpg"
+            alt="Network Specialist in data centre"
+            loading="lazy"
+          />
+          <div class="tint"></div>
+        </div>
+        <div class="prog-card-body">
+          <h3>Aptech Certified Network Specialist (ACNS)</h3>
+          <div class="prog-icon">🟡</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="prog-card">
+        <div class="prog-card-img">
+          <img
+            src="./images/image_3.jpg"
+            alt="Multimedia specialist with camera"
+            loading="lazy"
+          />
+          <div class="tint"></div>
+        </div>
+        <div class="prog-card-body">
+          <h3>Arena Multimedia Specialist Program (AMSP)</h3>
+          <div class="prog-icon">🟢</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    const overlay   = document.getElementById('navOverlay');
+
+    function openMenu() {
+      hamburger.classList.add('open');
+      navLinks.classList.add('open');
+      overlay.classList.add('active');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+      overlay.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    overlay.addEventListener('click', closeMenu);
+
+    // Close on nav link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 900) closeMenu();
+      });
+    });
+
+    // Reset on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) closeMenu();
+    });
+  </script>
+
+</body>
+</html>
